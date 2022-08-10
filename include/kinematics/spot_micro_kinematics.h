@@ -14,6 +14,7 @@ class SpotMicroKinematics {
   vector<vector<vector<vector<double>>>> body_kinematics(double omega, double phi, double psi, double xm, double ym, double zm);
   vector<double> leg_kinematics(vector<double> point);
   vector<double> calculate_leg_points(double angles);
+  vector<vector<vector<vector<double>>>> calculate_kinematics(vector<double> lp, double angles, double center);
 
 
  private:

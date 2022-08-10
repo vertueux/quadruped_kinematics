@@ -115,6 +115,19 @@ vector<double> SpotMicroKinematics::calculate_leg_points(double angles) {
   return final_result;
 }
 
+vector<vector<vector<vector<double>>>> SpotMicroKinematics::calculate_kinematics(vector<double> lp, double angles, double center) {
+  double omega = angles, phi = angles, psi = angles;
+  double xm = center, ym = center, zm = center;
+
+  vector<vector<vector<vector<double>>>> t_lf = body_kinematics(omega, phi, psi, xm, ym, zm);
+  vector<vector<vector<vector<double>>>> t_rf = body_kinematics(omega, phi, psi, xm, ym, zm);
+  vector<vector<vector<vector<double>>>> t_lb = body_kinematics(omega, phi, psi, xm, ym, zm);
+  vector<vector<vector<vector<double>>>> t_rb = body_kinematics(omega, phi, psi, xm, ym, zm);
+
+  vector<vector<double>> ix = {{-1, 0, 0, 0}, {0, 1, 0, 0}, {0, 0, 1, 0}, {0, 0, 0, 1}};
+
+}
+
 
 }
 
