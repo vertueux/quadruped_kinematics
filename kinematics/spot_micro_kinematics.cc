@@ -54,5 +54,23 @@ vector<vector<vector<vector<double>>>> SpotMicroKinematics::body_kinematics(doub
   return final_result;
 }
 
+vector<double> SpotMicroKinematics::leg_kinematics(vector<double> point) {
+  double x = point[0], y = point[1], z = point[2];
+
+  double f = sqrt(pow(x, 2) + pow(y, 2) - pow(l1, 2));
+  double g = f - l2;
+  double h = sqrt(pow(g, 2) + pow(z, 2));
+
+  double theta1 = atan2(y, x) - atan2(f, -l1);
+
+  double d = (pow(h, 2) - pow(l3, 2) - pow(l4, 2)) / (2 * l3 * l4);
+
+  double theta3 = acos(d);
+  double theta2 = atan2(z, g) - atan2(l4 * sin(theta3), l3 + l4 * cos(theta3));
+
+  return vector<double> {theta1, theta2, theta3};
+}
+
+
 }
 
