@@ -11,8 +11,8 @@ template<typename T, typename A> struct is_std_vector<vector<T, A>> : true_type 
 template <typename T>
 enable_if_t<is_std_vector<decay_t<T>>::value, T>
 operator+(T&& vec1, T&& vec2) {
-	for (int i = 0; i < vec2.size(); ++i) {
-    for (int j = 0; j < vec2[i].size(); j++) {
+	for (size_t i = 0; i < vec2.size(); ++i) {
+    for (size_t j = 0; j < vec2[i].size(); j++) {
       vec1[i][j] += vec2[i][j];
     }
   }

@@ -11,14 +11,18 @@
 namespace sms {
 
 vector<vector<double>> Matrix::dot_product(vector<vector<double>> m1, vector<vector<double>> m2) {
-  vector<vector<double>> m;
-  for (int i = 0; i < N; i++) {
-    for (int j = 0; j < N; j++) {
-      double result = 0;
-      for (int k = 0; k < N; k++) {
-        result += m1[i][k] * m2[k][j];
+  if(!(m1.size() == m2.size()))
+    throw std::invalid_argument("Dot product not compatible.");
+
+  vector<vector<double>> m = {{0, 0, 0, 0,}, {0, 0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0, 0}};
+  double result = 0;
+  for (int i = 0; i < 4; i++) {
+    for (int j = 0; j < 4; j++) {
+      for (int h = 0; h < 4; h++) {
+        result += m1[i][h] * m2[h][j];
       }
       m[i][j] = result;
+      result = 0;
     }
   }
   return m;
