@@ -3,6 +3,7 @@
 
 #include "kinematics/spot_micro_kinematics.h"
 #include <math.h>
+#include <iostream>
 
 namespace sms {
 
@@ -56,17 +57,32 @@ vector<vector<vector<vector<double>>>> SpotMicroKinematics::body_kinematics(doub
 
 vector<double> SpotMicroKinematics::leg_kinematics(vector<double> point) {
   double x = point[0], y = point[1], z = point[2];
+  double _l1 = l1, _l2 = l2,_l3 = l3,_l4 = l4;
+  double f = 0;
+  double theta3 = 0;
 
-  double f = sqrt(pow(x, 2) + pow(y, 2) - pow(l1, 2));
-  double g = f - l2;
+  if(isnan(sqrt(pow(x, 2) + pow(y, 2) - pow(_l1, 2)))) {
+    cout << "NAN in the leg kinematics with x: " << x << ", y: " << y << " and l1: " << _l1 << "\n";
+    f = _l1;
+  } else {
+    f = sqrt(pow(x, 2) + pow(y, 2) - pow(l1, 2));
+  }
+
+  double g = f - _l2;
   double h = sqrt(pow(g, 2) + pow(z, 2));
 
-  double theta1 = atan2(y, x) - atan2(f, -l1);
+  double theta1 =- atan2(y, x) - atan2(f, -_l1);
 
-  double d = (pow(h, 2) - pow(l3, 2) - pow(l4, 2)) / (2 * l3 * l4);
+  double d = ((pow(h, 2) - pow(_l3, 2) - pow(_l4, 2)) / (2 * _l3 * _l4));
 
-  double theta3 = acos(d);
-  double theta2 = atan2(z, g) - atan2(l4 * sin(theta3), l3 + l4 * cos(theta3));
+  if (isnan(acos(d))) {
+    cout << "NAN in the leg kinematics with x: " << x << ", y: " << y << " and d: " << d << "\n";
+    theta3 = 0;
+  } else {
+    theta3 = acos(d);
+  }
+
+  double theta2 = atan2(z, g) - atan2(_l4 * sin(theta3), _l3 + _l4 * cos(theta3));
 
   return vector<double> {theta1, theta2, theta3};
 }
