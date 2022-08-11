@@ -21,7 +21,7 @@ operator+(T&& vec1, T&& vec2) {
 
 vector<vector<vector<vector<double>>>> SpotMicroKinematics::body_kinematics(double omega, double phi, double psi, double xm, double ym, double zm) {
   vector<vector<double>> rx = {{1, 0, 0, 0}, {0, cos(omega), -sin(omega), 0}, {0, sin(omega), cos(omega), 0}, {0, 0, 0, 1}};
-  vector<vector<double>> ry = {{cos(phi), 0, sin(phi), 0}, {0, 1, 0, 0}, {-sin(phi), 0, cos(phi), 0}, {0, 0, 0,}};
+  vector<vector<double>> ry = {{cos(phi), 0, sin(phi), 0}, {0, 1, 0, 0}, {-sin(phi), 0, cos(phi), 0}, {0, 0, 0, 1}};
   vector<vector<double>> rz = {{cos(psi), -sin(psi), 0, 0}, {sin(psi), cos(psi), 0, 0}, {0, 0, 1, 0}, {0, 0, 0, 1}};
 
   vector<vector<double>> _rxyz = Matrix::dot_product(ry, rz);
