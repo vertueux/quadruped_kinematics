@@ -87,46 +87,44 @@ vector<double> SpotMicroKinematics::leg_kinematics(vector<double> point) {
   return vector<double> {theta1, theta2, theta3};
 }
 
-vector<double> SpotMicroKinematics::calculate_leg_points(double angles) {
+vector<double> SpotMicroKinematics::calculate_leg_points(vector<double> angles) {
   double _l1 = l1, _l2 = l2, _l3 = l3, _l4 = l4; 
-  double theta1, theta2, theta3;
-  (theta1, theta2, theta3) = angles;
-
+  double theta1 = angles[0], theta2 = angles[1], theta3 = angles[2];
   double theta23 = theta2 + theta3;
+  vector<double> final_result;
 
   vector<double> t0 = {0, 0, 0, 1};
+
+  for (int i = 0; i < t0.size(); i++)
+    final_result.push_back(t0.at(i));
 
   vector<double> _t0 = {-_l1 * cos(theta1), _l1 * sin(theta1), 0, 0};
   vector<double> t1 = t0 + _t0;
   _t0.clear();
 
+  for (int j = 0; j < t1.size(); j++) 
+    final_result.push_back(t1.at(j));
+
   vector<double> _t1 = {-_l2 * sin(theta1), -_l2 * cos(theta1), 0, 0};
   vector<double> t2 = t1 + _t1;
   _t1.clear();
+
+  for (int h = 0; h < t2.size(); h++) 
+    final_result.push_back(t2.at(h));
   
   vector<double> _t2 = {-_l3 * sin(theta1) * cos(theta2), -_l3 * cos(theta1) * cos(theta2), _l3 * sin(theta2), 0};
   vector<double> t3 = t2 + _t2;
   _t2.clear();
 
+  for (int k = 0; k < t3.size(); k++) 
+    final_result.push_back(t3.at(k));
+
   vector<double> _t3 = {-_l4 * sin(theta1) * cos(theta23), -_l4 * cos(theta1) * cos(theta23), _l4 * sin(theta23), 0};
   vector<double> t4 = t3 + _t3;
   _t3.clear();
-
-  vector<double> final_result;
-  for (int i = 0; i < t0.size(); ++i)
-    final_result.push_back(t0.at(i));
-
-  for (int i = 0; i < t1.size(); ++i) 
-    final_result.push_back(t1.at(i));
-
-  for (int i = 0; i < t2.size(); ++i) 
-    final_result.push_back(t2.at(i));
-
-  for (int i = 0; i < t3.size(); ++i) 
-    final_result.push_back(t3.at(i));
   
-  for (int i = 0; i < t4.size(); ++i) 
-    final_result.push_back(t4.at(i));
+  for (int l = 0; l < t4.size(); l++) 
+    final_result.push_back(t4.at(l));
 
   return final_result;
 }
