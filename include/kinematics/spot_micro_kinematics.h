@@ -6,7 +6,7 @@
 
 #include <kinematics/spot_micro_matrix.h>
 
-namespace sms {
+namespace spot_micro2 {
 
 class SpotMicroKinematics {
  public:

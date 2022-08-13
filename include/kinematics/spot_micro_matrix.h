@@ -9,7 +9,7 @@
 #include <vector>
 using namespace std;
 
-namespace sms {
+namespace spot_micro2 {
 
 class Matrix {
  public:

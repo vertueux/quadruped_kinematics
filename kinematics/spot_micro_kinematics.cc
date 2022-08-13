@@ -30,7 +30,7 @@ vector<T> operator+(const vector<T> &v1, const vector<T> &v2) {
 }
 
 
-namespace sms {
+namespace spot_micro2 {
 
 SpotMicroKinematics::SpotMicroKinematics() {
   l1 = 50;

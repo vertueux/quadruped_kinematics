@@ -8,7 +8,7 @@
 #include <iomanip>
 #include <stdexcept>
 
-namespace sms {
+namespace spot_micro2 {
 
 vector<vector<double>> Matrix::dot_product(vector<vector<double>> m1, vector<vector<double>> m2) {
   if(!(m1.size() == m2.size()))
