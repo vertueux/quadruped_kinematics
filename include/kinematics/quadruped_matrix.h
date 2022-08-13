@@ -9,7 +9,7 @@
 #include <vector>
 using namespace std;
 
-namespace spot_micro2 {
+namespace quadruped {
 
 class Matrix {
  public:

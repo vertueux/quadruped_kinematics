@@ -4,13 +4,13 @@
 #ifndef SPOT_MICRO_KINEMATICS_H
 #define SPOT_MICRO_KINEMATICS_H
 
-#include <kinematics/spot_micro_matrix.h>
+#include <kinematics/quadruped_matrix.h>
 
-namespace spot_micro2 {
+namespace quadruped {
 
-class SpotMicroKinematics {
+class QuadrupedKinematics {
  public:
-  SpotMicroKinematics();
+  QuadrupedKinematics();
 
   vector<vector<vector<vector<double>>>> body_kinematics(double omega, double phi, double psi, double xm, double ym, double zm);
   vector<double> leg_kinematics(vector<double> point);

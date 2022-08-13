@@ -1,7 +1,7 @@
 // Copyright (c) Virtuous. Licensed under the MIT license.
 // See LICENSE.md in the project root for license information.
 
-#include "kinematics/spot_micro_kinematics.h"
+#include "kinematics/quadruped_kinematics.h"
 #include <vector>
 #include <math.h>
 #include <iomanip>
@@ -30,9 +30,9 @@ vector<T> operator+(const vector<T> &v1, const vector<T> &v2) {
 }
 
 
-namespace spot_micro2 {
+namespace quadruped {
 
-SpotMicroKinematics::SpotMicroKinematics() {
+QuadrupedKinematics::QuadrupedKinematics() {
   l1 = 50;
   l2 = 20; 
   l3 = 120;
@@ -41,7 +41,7 @@ SpotMicroKinematics::SpotMicroKinematics() {
   W = 75;
 }
 
-vector<vector<vector<vector<double>>>> SpotMicroKinematics::body_kinematics(double omega, double phi, double psi, double xm, double ym, double zm) {
+vector<vector<vector<vector<double>>>> QuadrupedKinematics::body_kinematics(double omega, double phi, double psi, double xm, double ym, double zm) {
   vector<vector<double>> rx = {{1, 0, 0, 0}, {0, cos(omega), -sin(omega), 0}, {0, sin(omega), cos(omega), 0}, {0, 0, 0, 1}};
   vector<vector<double>> ry = {{cos(phi), 0, sin(phi), 0}, {0, 1, 0, 0}, {-sin(phi), 0, cos(phi), 0}, {0, 0, 0, 1}};
   vector<vector<double>> rz = {{cos(psi), -sin(psi), 0, 0}, {sin(psi), cos(psi), 0, 0}, {0, 0, 1, 0}, {0, 0, 0, 1}};
@@ -76,7 +76,7 @@ vector<vector<vector<vector<double>>>> SpotMicroKinematics::body_kinematics(doub
   return final_result;
 }
 
-vector<double> SpotMicroKinematics::leg_kinematics(vector<double> point) {
+vector<double> QuadrupedKinematics::leg_kinematics(vector<double> point) {
   double x = point[0], y = point[1], z = point[2];
   double _l1 = l1, _l2 = l2,_l3 = l3,_l4 = l4;
   double f = 0;
@@ -108,7 +108,7 @@ vector<double> SpotMicroKinematics::leg_kinematics(vector<double> point) {
   return vector<double> {theta1, theta2, theta3};
 }
 
-vector<double> SpotMicroKinematics::calculate_leg_points(vector<double> angles) {
+vector<double> QuadrupedKinematics::calculate_leg_points(vector<double> angles) {
   double _l1 = l1, _l2 = l2, _l3 = l3, _l4 = l4; 
   double theta1 = angles[0], theta2 = angles[1], theta3 = angles[2];
   double theta23 = theta2 + theta3;

@@ -1,14 +1,14 @@
 // Copyright (c) Virtuous. Licensed under the MIT license.
 // See LICENSE.md in the project root for license information.
 
-#include "kinematics/spot_micro_matrix.h"
+#include "kinematics/quadruped_matrix.h"
 
 #include <vector>
 #include <math.h>
 #include <iomanip>
 #include <stdexcept>
 
-namespace spot_micro2 {
+namespace quadruped {
 
 vector<vector<double>> Matrix::dot_product(vector<vector<double>> m1, vector<vector<double>> m2) {
   if(!(m1.size() == m2.size()))
