@@ -34,7 +34,7 @@ double get_determinant(const vector<vector<double>> vect) {
     if(vect.size() != vect[0].size()) {
         throw runtime_error("Matrix is not quadratic");
     } 
-    int dimension = vect.size();
+    size_t dimension = vect.size();
 
     if(dimension == 0) {
         return 1;

@@ -2,22 +2,43 @@
 // See LICENSE.md in the project root for license information.
 
 #include "kinematics/spot_micro_kinematics.h"
+#include <vector>
 #include <math.h>
+#include <iomanip>
+#include <stdexcept>
 #include <iostream>
+using namespace std;
+
+template <class T>
+vector<vector<T>> operator+(const vector<vector<T>> &v1, const vector<vector<T>> &v2) {
+	vector<vector<T>> ans = v1;
+	for (size_t i = 0; i < ans.size(); ++i) {
+    for (size_t j = 0; j < ans[i].size(); ++j) {
+      ans[i][j] += v2[i][j];
+    }
+  }
+	return ans;
+}
+
+template <class T>
+vector<T> operator+(const vector<T> &v1, const vector<T> &v2) {
+	vector<T> ans = v1;
+	for (size_t i = 0; i < ans.size(); ++i) {
+    ans[i] += v2[i];
+  }
+	return ans;
+}
+
 
 namespace sms {
 
-template<typename> struct is_std_vector :  false_type {};
-template<typename T, typename A> struct is_std_vector<vector<T, A>> : true_type {};
-template <typename T>
-enable_if_t<is_std_vector<decay_t<T>>::value, T>
-operator+(T&& vec1, T&& vec2) {
-	for (size_t i = 0; i < vec2.size(); ++i) {
-    for (size_t j = 0; j < vec2[i].size(); j++) {
-      vec1[i][j] += vec2[i][j];
-    }
-  }
-	return vec1;
+SpotMicroKinematics::SpotMicroKinematics() {
+  l1 = 50;
+  l2 = 20; 
+  l3 = 120;
+  l4 = 155; 
+  L = 140; 
+  W = 75;
 }
 
 vector<vector<vector<vector<double>>>> SpotMicroKinematics::body_kinematics(double omega, double phi, double psi, double xm, double ym, double zm) {
@@ -128,20 +149,6 @@ vector<double> SpotMicroKinematics::calculate_leg_points(vector<double> angles) 
 
   return final_result;
 }
-
-vector<vector<vector<vector<double>>>> SpotMicroKinematics::calculate_kinematics(vector<double> lp, double angles, double center) {
-  double omega = angles, phi = angles, psi = angles;
-  double xm = center, ym = center, zm = center;
-
-  vector<vector<vector<vector<double>>>> t_lf = body_kinematics(omega, phi, psi, xm, ym, zm);
-  vector<vector<vector<vector<double>>>> t_rf = body_kinematics(omega, phi, psi, xm, ym, zm);
-  vector<vector<vector<vector<double>>>> t_lb = body_kinematics(omega, phi, psi, xm, ym, zm);
-  vector<vector<vector<vector<double>>>> t_rb = body_kinematics(omega, phi, psi, xm, ym, zm);
-
-  vector<vector<double>> ix = {{-1, 0, 0, 0}, {0, 1, 0, 0}, {0, 0, 1, 0}, {0, 0, 0, 1}};
-
-}
-
 
 }
 
