@@ -1,4 +1,4 @@
-// Copyright (c) Virtuous. Licensed under the MIT license.
+// Copyright (c) Virtuous. Licensed under the GNU AFFERO GENERAL PUBLIC LICENSE.
 // See LICENSE.md in the project root for license information.
 
 #ifndef SPOT_MICRO_KINEMATICS_H
