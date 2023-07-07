@@ -14,7 +14,7 @@ You need to have CMake installed to build the project on your computer. You can 
 # Clone the Project
 You can clone and run this package by copying the command below :
 ```bash
-git clone --recursive https://github.com/vertueux/quadruped_kinematics.git
+git clone https://github.com/vertueux/quadruped_kinematics.git
 ```
 
 # Build the Project
