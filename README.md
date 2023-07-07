@@ -5,7 +5,7 @@ This project uses `std::vector` to create matrices. You can adapt this library t
 > * ~~Program an algorithm to find the inverse of a 4x4 matrix based on the std::vector~~
 > * ~~Run tests to verify that the entire program is working properly (90% test finished)~~
 
-![license](https://img.shields.io/badge/license-MIT-important)
+![license](https://img.shields.io/badge/license-AGPL_3.0-important)
 ![discord](https://img.shields.io/badge/Contact%20me%20on%20Discord-now%239470-informational)
 
 # Installing CMake 
