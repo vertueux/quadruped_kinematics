@@ -81,7 +81,7 @@ std::vector<double> QuadrupedKinematics::leg_kinematics(std::vector<double> poin
   double f = 0;
   double theta3 = 0;
 
-  if(isnan(sqrt(pow(x, 2) + pow(y, 2) - pow(_l1, 2)))) {
+  if(std::isnan(sqrt(pow(x, 2) + pow(y, 2) - pow(_l1, 2)))) {
     std::cout << "NAN in the leg kinematics with x: " << x << ", y: " << y << " and l1: " << _l1 << "\n";
     f = _l1;
   } else 
@@ -94,7 +94,7 @@ std::vector<double> QuadrupedKinematics::leg_kinematics(std::vector<double> poin
 
   double d = ((pow(h, 2) - pow(_l3, 2) - pow(_l4, 2)) / (2 * _l3 * _l4));
 
-  if (isnan(acos(d))) {
+  if (std::isnan(acos(d))) {
     std::cout << "NAN in the leg kinematics with x: " << x << ", y: " << y << " and d: " << d << "\n";
     theta3 = 0;
   } else 
